@@ -52,8 +52,13 @@
 #include <unordered_map>
 #include <unordered_set>
 #endif
+
 using namespace std;
 
 int main(){
-    cout<<"Hello WOrld";
+
+    string s;
+    cin>>s;
+
+    cout<<s;
 }
