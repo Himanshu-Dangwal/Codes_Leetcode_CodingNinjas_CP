@@ -1,3 +1,26 @@
+/*
+Problem Statement :
+
+Given two integers N and P, your task is to find the number of integral solutions to:-
+ x<sup>2</sup> = 1 (mod P) such that 1 <= x <= N
+
+ Sample Input:-
+10 5
+
+Sample Output:-
+4
+
+Explanation:-
+1 4 6 9 are the required values of x.
+
+Sample Input:-
+10 2
+
+Sample Output:-
+5
+
+*/
+
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -55,8 +78,34 @@
 
 using namespace std;
 
+int countSolutions(int n, int p)
+{
+
+    int ans = 0;
+    for (int i = 1; i < p; i++)
+    {
+        if ((i * i) % p == 1)
+        {
+            int last = i + p * (n / p);
+
+            if (last > n)
+            {
+                last -= p;
+            }
+
+            int count = (last - i) / p + 1;
+            ans += count;
+        }
+    }
+
+    return ans;
+}
+
 int main()
 {
 
-    cout << "Hello";
+    int n, p;
+    cin >> n >> p;
+
+    cout << countSolutions(n, p);
 }
