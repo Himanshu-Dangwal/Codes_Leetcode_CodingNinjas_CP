@@ -18,9 +18,28 @@ typedef long long ll;
 
 using namespace std;
 
+int power(int a, int n)
+{
+    int ans = 1;
 
-int main(){
+    while (n)
+    {
+        if (n % 2)
+            ans = ans * a, n--;
+        else
+            a = a * a, n /= 2;
+    }
 
+    return ans;
+}
+
+int main()
+{
+
+    int a, n;
+    cin >> a >> n;
+
+    cout << power(a, n);
 
     return 0;
 }
