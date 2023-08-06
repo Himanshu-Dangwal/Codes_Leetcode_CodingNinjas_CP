@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <iostream>
-
+#include<vector>
 typedef long long ll;
 #define MOD 1000000007
 
