@@ -14,11 +14,6 @@ typedef long long ll;
 using namespace std;
 #define MAX 1000000
 
-typedef long long ll;
-#define MOD 1000000007
-
-using namespace std;
-
 int extendedEuclid(int a, int b, int &x, int &y)
 {
     if (b == 0)
