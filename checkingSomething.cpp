@@ -16,7 +16,7 @@ int main()
 {
     bool x = true;
 
-    if (x || a)
+    if (x || false)
     {
         cout << "Working";
     }
