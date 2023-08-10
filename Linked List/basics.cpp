@@ -88,6 +88,37 @@ Node *reverseRecursive(Node *head)
     return newHead;
 }
 
+Node *reverseK(Node *head, int k)
+{
+
+    if (head == NULL)
+        return NULL;
+
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *next;
+
+    int cnt = 0;
+
+    while (curr != NULL && cnt < k)
+    {
+        next = curr->next;
+        curr->next = prev;
+
+        prev = curr;
+        curr = next;
+
+        cnt++;
+    }
+
+    if (curr != NULL)
+    {
+        head->next = reverseK(curr, k);
+    }
+
+    return prev;
+}
+
 int main()
 {
     Node *head = NULL;
@@ -96,13 +127,18 @@ int main()
     insertAtTail(head, 3);
     insertAtTail(head, 4);
     insertAtTail(head, 5);
+    insertAtTail(head, 6);
 
     display(head);
 
     // reverse(head); //Iterative
 
-    Node *newNode = reverseRecursive(head);
-    display(newNode);
+    // Node *newNode = reverseRecursive(head);
+    // display(newNode);
+
+    Node *newHead = reverseK(head, 2);
+    display(newHead);
+
     // display(head);
     return 0;
 }
