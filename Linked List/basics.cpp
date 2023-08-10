@@ -76,6 +76,18 @@ void reverse(Node *&head)
     head = prev;
 }
 
+Node *reverseRecursive(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+    Node *newHead = reverseRecursive(head->next);
+    head->next->next = head;
+
+    head->next = NULL;
+
+    return newHead;
+}
+
 int main()
 {
     Node *head = NULL;
@@ -87,7 +99,10 @@ int main()
 
     display(head);
 
-    reverse(head);
-    display(head);
+    // reverse(head); //Iterative
+
+    Node *newNode = reverseRecursive(head);
+    display(newNode);
+    // display(head);
     return 0;
 }
