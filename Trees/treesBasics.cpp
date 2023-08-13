@@ -65,6 +65,38 @@ void levelOrder(Node *root)
     }
 }
 
+int sumAtKthLevel(Node *root, int k)
+{
+
+    queue<Node *> q;
+    q.push(root);
+
+    int level = 0;
+
+    while (!q.empty() && level < k)
+    {
+        int n = q.size();
+
+        for (int i = 0; i < n; i++)
+        {
+            auto curr = q.front();
+            q.pop();
+
+            if (curr->left != NULL)
+                q.push(curr->left);
+            if (curr->right != NULL)
+                q.push(curr->right);
+
+            level++;
+        }
+    }
+
+    int sum = 0;
+    while (!q.empty())
+        sum += q.front()->val, q.pop();
+    return sum;
+}
+
 int main()
 {
 
@@ -83,4 +115,6 @@ int main()
     postOrder(root);
     cout << endl;
     levelOrder(root);
+    cout << endl;
+    cout << sumAtKthLevel(root, 2);
 }
