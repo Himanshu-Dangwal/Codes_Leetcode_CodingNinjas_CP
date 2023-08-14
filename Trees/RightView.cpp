@@ -45,58 +45,6 @@ void inorder(Node *root)
     inorder(root->right);
 }
 
-void levelOrder(Node *root)
-{
-
-    queue<Node *> q;
-    q.push(root);
-
-    while (!q.empty())
-    {
-        Node *curr = q.front();
-        q.pop();
-
-        cout << curr->val << " ";
-
-        if (curr->left != NULL)
-            q.push(curr->left);
-        if (curr->right != NULL)
-            q.push(curr->right);
-    }
-}
-
-int sumAtKthLevel(Node *root, int k)
-{
-
-    queue<Node *> q;
-    q.push(root);
-
-    int level = 0;
-
-    while (!q.empty() && level < k)
-    {
-        int n = q.size();
-
-        for (int i = 0; i < n; i++)
-        {
-            Node *curr = q.front();
-            q.pop();
-
-            if (curr->left != NULL)
-                q.push(curr->left);
-            if (curr->right != NULL)
-                q.push(curr->right);
-
-            level++;
-        }
-    }
-
-    int sum = 0;
-    while (!q.empty())
-        sum += q.front()->val, q.pop();
-    return sum;
-}
-
 void rightView(Node *root)
 {
     if (root == NULL)
