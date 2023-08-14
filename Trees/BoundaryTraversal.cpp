@@ -121,6 +121,82 @@ bool isBalanced(Node *root, int *height)
     return false;
 }
 
+bool isLeaf(Node *root)
+{
+    return (root->left == NULL && root->right == NULL);
+}
+
+void addLeftNodes(Node *root, vector<int> &ans)
+{
+
+    if (root == NULL)
+        return;
+
+    Node *curr = root->left;
+
+    while (curr)
+    {
+        if (!isLeaf(curr))
+            ans.push_back(curr->val);
+        if (curr->left)
+            curr = curr->left;
+        else
+            curr = curr->right;
+    }
+}
+
+void addleafnodes(Node *root, vector<int> &ans)
+{
+
+    if (isLeaf(root))
+    {
+        ans.push_back(root->val);
+        return;
+    }
+
+    addleafnodes(root->left, ans);
+    addleafnodes(root->right, ans);
+}
+
+void addRightNodes(Node *root, vector<int> &ans)
+{
+
+    if (root == NULL)
+        return;
+
+    Node *curr = root->right;
+    vector<int> temp;
+    while (curr)
+    {
+        if (!isLeaf(curr))
+            temp.push_back(curr->val);
+        if (curr->right)
+            curr = curr->right;
+        else
+            curr = curr->left;
+    }
+
+    for (int i = temp.size() - 1; i >= 0; i--)
+    {
+        ans.push_back(temp[i]);
+    }
+}
+
+void boundaryTraversal(Node *root)
+{
+
+    vector<int> ans;
+    if (root != NULL)
+        ans.push_back(root->val);
+
+    addLeftNodes(root, ans);
+    addleafnodes(root, ans);
+    addRightNodes(root, ans);
+
+    for (int i = 0; i < ans.size(); i++)
+        cout << ans[i] << " ";
+}
+
 int main()
 {
 
@@ -131,4 +207,6 @@ int main()
     root->left->right = new Node(5);
     root->right->left = new Node(6);
     root->right->right = new Node(7);
+
+    boundaryTraversal(root);
 }
