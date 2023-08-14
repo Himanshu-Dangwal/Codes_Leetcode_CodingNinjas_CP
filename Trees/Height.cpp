@@ -111,6 +111,14 @@ int sum(Node *root)
     return sum(root->left) + sum(root->right) + root->val;
 }
 
+int height(Node *root)
+{
+    if (root == NULL)
+        return 0;
+
+    return max(height(root->left), height(root->right)) + 1;
+}
+
 int main()
 {
 
@@ -132,6 +140,8 @@ int main()
     // cout << endl;
     // cout << sumAtKthLevel(root, 2);
 
-    cout << count(root) << endl;
-    cout << sum(root) << endl;
+    // cout << count(root) << endl;
+    // cout << sum(root) << endl;
+
+    cout << height(root);
 }
