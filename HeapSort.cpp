@@ -3,7 +3,6 @@ using namespace std;
 
 void heapify(vector<int> &arr, int n, int idx)
 {
-
     int left = 2 * idx + 1;
     int right = 2 * idx + 2;
     int maxIdx = idx;
