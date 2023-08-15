@@ -33,6 +33,19 @@ void heapsort(vector<int> &arr)
     {
         heapify(arr, n, i);
     }
+
+    // Replace last element with the first element and heapify the tree again.
+
+    cout << "Max Heap after heapify " << endl;
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        swap(arr[i], arr[0]);
+        heapify(arr, i, 0);
+    }
 }
 
 int main()
@@ -45,8 +58,6 @@ int main()
     for (int i = 0; i < n; cin >> arr[i++])
         ;
 
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
     cout << endl;
     heapsort(arr);
 
