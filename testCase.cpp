@@ -1,11 +1,34 @@
 #include "bits/stdc++.h"
 using namespace std;
+bool hasNearbyDuplicate(vector<int> &nums, int k)
+{
+    unordered_map<int, int> numIndexMap;
+    for (int i = 0; i < nums.size(); ++i)
+    {
+        if (numIndexMap.find(nums[i]) != numIndexMap.end() && i - numIndexMap[nums[i]] <= k)
+        {
+            return true;
+        }
+        numIndexMap[nums[i]] = i;
+    }
+    return false;
+}
 int main()
 {
-    cout << 1000000 << endl;
-    for (int i = 0; i < 1000000; i++)
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+        cin >> nums[i];
+    int k;
+    cin >> k;
+    if (hasNearbyDuplicate(nums, k))
     {
-        cout << i << " ";
+        cout << "Yes" << endl;
     }
-    cout << endl;
+    else
+    {
+        cout << "No" << endl;
+    }
+    return 0;
 }
